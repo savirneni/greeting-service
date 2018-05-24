@@ -1,14 +1,16 @@
 package uk.gov.homeoffice;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController("/greetings")
 public class GreetingServiceController {
 
-    @RequestMapping("/name")
-    public String hello() {
-        return "Hello";
+    private static final String TEMPLATE = "Hello, %s";
+
+    @RequestMapping("/names/{name}")
+    @ResponseBody
+    public String sayHello(@PathVariable("name") String name) {
+        return String.format(TEMPLATE, name);
     }
 
 }
