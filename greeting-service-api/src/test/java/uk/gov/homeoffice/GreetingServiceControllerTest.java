@@ -24,8 +24,8 @@ public class GreetingServiceControllerTest {
 
     @Test
     public void helloName() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/name").accept(MediaType.APPLICATION_JSON))
+        mvc.perform(MockMvcRequestBuilders.get("/names/{name}", "Praveen").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().string(equalTo("Hello")));
+                .andExpect(content().string(equalTo("Hello, Praveen")));
     }
 }
